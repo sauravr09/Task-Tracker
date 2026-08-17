@@ -1,0 +1,159 @@
+/*
+   Light is the default; dark applies via prefers-color-scheme or [data-theme="dark"]. 
+*/
+
+:root {
+  /* Surfaces */
+  --bg:                 oklch(0.965 0.005 255); /* #EFF2F5  page background */
+  --surface:            oklch(1 0 0);           /* #FFFFFF  top bar, cards, popovers */
+  --column:             oklch(0.925 0.007 255); /* #DFE3E8  column panel — clearly darker than bg */
+  --column-drag-over:   oklch(0.92 0.025 265);  /* #DCE5F7 */
+  --card:               oklch(1 0 0);           /* #FFFFFF */
+
+ /* Lines */
+  --border:             oklch(0.87 0.008 255);  /* #C9CFD6  card outline */
+  --border-hairline:    oklch(0.87 0.008 255);  /* #C9CFD6  header, inputs, chips */
+  --divider:            oklch(0.89 0.006 255);  /* #D3D8DD  in-card rule */
+  --border-dashed:      oklch(0.78 0.01 255);   /* #ADB4BD  add-task / add-column */
+  --scrollbar-thumb:    oklch(0.78 0.008 255);  /* #AEB4BC */
+  --drag-handle:        oklch(0.72 0.008 255);  /* #9BA1AA */
+
+  /* Text */
+  --text:               oklch(0.26 0.015 260);  /* #20242B */
+  --text-secondary:     oklch(0.4 0.015 260);   /* #434951 */
+  --text-muted:         oklch(0.55 0.012 260);  /* #6D7378  labels, descriptions */
+  --text-faint:         oklch(0.62 0.012 260);  /* #83878E  refs, meta */
+  --text-inverse:       oklch(0.97 0.004 255);  /* #F6F7F8 */
+
+  /* Accent — one is active at a time */
+  --accent:             oklch(0.55 0.19 265);   /* #3967DF  indigo (default) */
+  --accent-green:       oklch(0.5 0.13 155);    /* #017841 */
+  --accent-teal:        oklch(0.55 0.13 200);   /* #01878E */
+  --accent-violet:      oklch(0.52 0.16 300);   /* #794DB7 */
+  --accent-contrast:    oklch(1 0 0);           /* text on accent */
+
+  /* Tags — bg / text / dot per tone (same chroma + lightness, hue varied) */
+  --tag-rose-bg:        oklch(0.955 0.035 20);  /* #FEE7E7  Priority: High */
+  --tag-rose-text:      oklch(0.47 0.17 22);    /* #A51D2B */
+  --tag-rose-dot:       oklch(0.6 0.19 22);     /* #DB4049 */
+
+  --tag-amber-bg:       oklch(0.96 0.045 78);   /* #FFEED0  Priority: Medium */
+  --tag-amber-text:     oklch(0.47 0.13 62);    /* #8D4400 */
+  --tag-amber-dot:      oklch(0.72 0.15 70);    /* #DF911A */
+
+  --tag-green-bg:       oklch(0.955 0.04 150);  /* #DFF9E2  Priority: Low */
+  --tag-green-text:     oklch(0.44 0.11 155);   /* #006436 */
+  --tag-green-dot:      oklch(0.62 0.14 155);   /* #279F5F */
+
+  --tag-blue-bg:        oklch(0.955 0.03 250);  /* #E2F3FE  Category: Frontend */
+  --tag-blue-text:      oklch(0.45 0.14 255);   /* #0C55A1 */
+  --tag-blue-dot:       oklch(0.6 0.16 255);    /* #3280DD */
+
+  --tag-violet-bg:      oklch(0.955 0.03 295);  /* #F1ECFE  Category: Design */
+  --tag-violet-text:    oklch(0.46 0.15 297);   /* #633EA1 */
+  --tag-violet-dot:     oklch(0.6 0.17 297);    /* #8C65D9 */
+
+  --tag-teal-bg:        oklch(0.955 0.035 195); /* #D7F8F6  Category: Research */
+  --tag-teal-text:      oklch(0.44 0.1 200);    /* #016368 */
+  --tag-teal-dot:       oklch(0.62 0.12 200);   /* #009BA3 */
+
+  --tag-slate-bg:       oklch(0.955 0.006 255); /* #ECF1F4  Category: Ops */
+  --tag-slate-text:     oklch(0.45 0.015 260);  /* #50565E */
+  --tag-slate-dot:      oklch(0.7 0.015 260);   /* #989FA9 */
+
+  /* Column status dots */
+  --dot-neutral:        oklch(0.7 0.015 260);   /* #989FA9  To Do */
+  --dot-active:         oklch(0.62 0.16 255);   /* #3986E4  In Progress */
+  --dot-review:         oklch(0.72 0.15 70);    /* #DF911A  Testing */
+  --dot-done:           oklch(0.62 0.14 155);   /* #279F5F  Done */
+
+  /* Status: WIP limit pill */
+  --warn-bg:            oklch(0.955 0.035 60);  /* #FEEAD9 */
+  --warn-text:          oklch(0.5 0.16 40);     /* #AB3600 */
+
+  /* Feedback */
+  --toast-bg:           oklch(0.27 0.015 260);  /* #22272E */
+  --toast-text:         oklch(0.97 0.004 255);  /* #F6F7F8 */
+  --toast-action:       oklch(0.82 0.09 265);   /* #A8BDF3 */
+  --overlay:            oklch(0.25 0.02 260 / 0.32);
+
+  /* Elevation */
+  --shadow-card:        0 1px 3px oklch(0.3 0.02 260 / 0.12);
+  --shadow-card-hover:  0 2px 8px oklch(0.3 0.03 260 / 0.09);
+  --shadow-drag:        0 14px 30px oklch(0.3 0.03 260 / 0.2);
+  --shadow-popover:     0 12px 28px oklch(0.3 0.03 260 / 0.16);
+  --shadow-modal:       0 24px 60px oklch(0.25 0.03 260 / 0.24);
+}
+
+/* ── Dark ─────────────────────────────────────────────────────────────
+   Tag chips invert: dark desaturated fill + light text (AA on --card).
+   Accents lift in lightness so they stay legible on dark surfaces.     */
+
+/* Explicit override — same values, forced regardless of OS setting */
+[data-theme="dark"] {
+  --bg:               oklch(0.19 0.012 260);
+  --surface:          oklch(0.225 0.012 260);
+  --column:           oklch(0.215 0.012 260);
+  --column-drag-over: oklch(0.255 0.03 265);
+  --card:             oklch(0.245 0.013 260);
+
+  --border:           oklch(0.31 0.014 260);
+  --border-hairline:  oklch(0.31 0.014 260);
+  --divider:          oklch(0.285 0.013 260);
+  --border-dashed:    oklch(0.34 0.014 260);
+  --scrollbar-thumb:  oklch(0.38 0.014 260);
+  --drag-handle:      oklch(0.45 0.014 260);
+
+  --text:             oklch(0.95 0.006 260);
+  --text-secondary:   oklch(0.8 0.01 260);
+  --text-muted:       oklch(0.68 0.012 260);
+  --text-faint:       oklch(0.58 0.012 260);
+  --text-inverse:     oklch(0.2 0.012 260);
+
+  --accent:           oklch(0.68 0.15 265);
+  --accent-green:     oklch(0.68 0.12 155);
+  --accent-teal:      oklch(0.7 0.11 200);
+  --accent-violet:    oklch(0.68 0.14 300);
+  --accent-contrast:  oklch(0.18 0.012 260);
+
+  --tag-rose-bg:      oklch(0.32 0.07 22);
+  --tag-rose-text:    oklch(0.82 0.1 22);
+  --tag-rose-dot:     oklch(0.68 0.16 22);
+  --tag-amber-bg:     oklch(0.32 0.06 65);
+  --tag-amber-text:   oklch(0.85 0.09 75);
+  --tag-amber-dot:    oklch(0.75 0.14 70);
+  --tag-green-bg:     oklch(0.31 0.055 155);
+  --tag-green-text:   oklch(0.83 0.09 155);
+  --tag-green-dot:    oklch(0.68 0.13 155);
+  --tag-blue-bg:      oklch(0.32 0.06 255);
+  --tag-blue-text:    oklch(0.83 0.08 252);
+  --tag-blue-dot:     oklch(0.68 0.14 255);
+  --tag-violet-bg:    oklch(0.32 0.06 297);
+  --tag-violet-text:  oklch(0.84 0.08 297);
+  --tag-violet-dot:   oklch(0.7 0.14 297);
+  --tag-teal-bg:      oklch(0.31 0.05 200);
+  --tag-teal-text:    oklch(0.83 0.07 200);
+  --tag-teal-dot:     oklch(0.7 0.11 200);
+  --tag-slate-bg:     oklch(0.3 0.012 260);
+  --tag-slate-text:   oklch(0.78 0.012 260);
+  --tag-slate-dot:    oklch(0.6 0.014 260);
+
+  --dot-neutral:      oklch(0.6 0.014 260);
+  --dot-active:       oklch(0.68 0.14 255);
+  --dot-review:       oklch(0.75 0.14 70);
+  --dot-done:         oklch(0.68 0.13 155);
+
+  --warn-bg:          oklch(0.32 0.065 45);
+  --warn-text:        oklch(0.84 0.1 55);
+
+  --toast-bg:         oklch(0.32 0.014 260);
+  --toast-text:       oklch(0.96 0.005 260);
+  --toast-action:     oklch(0.8 0.11 265);
+  --overlay:          oklch(0.12 0.01 260 / 0.6);
+
+  --shadow-card:       0 1px 2px oklch(0 0 0 / 0.4);
+  --shadow-card-hover: 0 2px 10px oklch(0 0 0 / 0.5);
+  --shadow-drag:       0 14px 30px oklch(0 0 0 / 0.6);
+  --shadow-popover:    0 12px 28px oklch(0 0 0 / 0.55);
+  --shadow-modal:      0 24px 60px oklch(0 0 0 / 0.65);
+}

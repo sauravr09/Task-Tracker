@@ -1,0 +1,148 @@
+/* ── Base ─────────────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* html, body {
+  width: 100%;
+  overflow-x: hidden;
+} */
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* ── Top bar ──────────────────────────────────────────────────────── */
+.topbar {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border-hairline);
+}
+
+.topbar-title {
+  color: var(--text);
+}
+
+.topbar-subtitle {
+  color: var(--text-muted);
+}
+
+.search-input {
+  background: var(--surface);
+  border: 1px solid var(--border-hairline);
+  color: var(--text);
+}
+
+.search-input::placeholder {
+  color: var(--text-faint);
+}
+
+.filter-chip {
+  background: var(--surface);
+  border: 1px solid var(--border-hairline);
+  color: var(--text-secondary);
+}
+
+.new-task-btn {
+  background: var(--accent-green);
+  color: var(--accent-contrast);
+}
+
+/* ── Columns ──────────────────────────────────────────────────────── */
+.column {
+  background: var(--column);
+}
+
+.column.drag-over {
+  background: var(--column-drag-over);
+}
+
+.column-title {
+  color: var(--text);
+}
+
+.column-count {
+  color: var(--text-muted);
+  background: var(--surface);
+  border: 1px solid var(--border-hairline);
+}
+
+.column-dot.neutral { background: var(--dot-neutral); }
+.column-dot.active  { background: var(--dot-active); }
+.column-dot.review  { background: var(--dot-review); }
+.column-dot.done    { background: var(--dot-done); }
+
+/* ── Cards ────────────────────────────────────────────────────────── */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-card);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-card-hover);
+}
+
+.card-title {
+  color: var(--text);
+}
+
+.card-description {
+  color: var(--text-muted);
+}
+
+.card-divider {
+  border-top: 1px solid var(--divider);
+}
+
+.card-meta {
+  color: var(--text-faint);
+}
+
+.card-drag-handle {
+  color: var(--drag-handle);
+}
+
+.move-to-btn {
+  background: var(--surface);
+  border: 1px solid var(--border-hairline);
+  color: var(--text-secondary);
+}
+
+/* ── Add task / Add column (dashed) ──────────────────────────────── */
+.add-task-btn,
+.add-column-btn {
+  border: 1px dashed var(--border-dashed);
+  color: var(--text-muted);
+}
+
+/* ── Tags — priority ──────────────────────────────────────────────── */
+.tag-high    { background: var(--tag-rose-bg);  color: var(--tag-rose-text); }
+.tag-high .tag-dot  { background: var(--tag-rose-dot); }
+
+.tag-medium  { background: var(--tag-amber-bg); color: var(--tag-amber-text); }
+.tag-medium .tag-dot { background: var(--tag-amber-dot); }
+
+.tag-low     { background: var(--tag-green-bg); color: var(--tag-green-text); }
+.tag-low .tag-dot { background: var(--tag-green-dot); }
+
+/* ── Tags — category ──────────────────────────────────────────────── */
+.tag-frontend { background: var(--tag-blue-bg);   color: var(--tag-blue-text); }
+.tag-frontend .tag-dot { background: var(--tag-blue-dot); }
+
+.tag-design   { background: var(--tag-violet-bg); color: var(--tag-violet-text); }
+.tag-design .tag-dot { background: var(--tag-violet-dot); }
+
+.tag-research { background: var(--tag-teal-bg);   color: var(--tag-teal-text); }
+.tag-research .tag-dot { background: var(--tag-teal-dot); }
+
+.tag-ops      { background: var(--tag-slate-bg);  color: var(--tag-slate-text); }
+.tag-ops .tag-dot { background: var(--tag-slate-dot); }
+
+/* ── Theme toggle button ──────────────────────────────────────────── */
+.theme-toggle-btn {
+  background: var(--surface);
+  border: 1px solid var(--border-hairline);
+  color: var(--text-secondary);
+}
