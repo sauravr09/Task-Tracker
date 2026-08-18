@@ -141,8 +141,8 @@ body {
 .tag-ops .tag-dot { background: var(--tag-slate-dot); }
 
 /* ── Theme toggle button ──────────────────────────────────────────── */
-.theme-toggle-btn {
+/* .theme-toggle-btn {
   background: var(--surface);
   border: 1px solid var(--border-hairline);
   color: var(--text-secondary);
-}
+} */

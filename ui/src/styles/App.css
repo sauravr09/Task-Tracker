@@ -38,8 +38,8 @@
   align-items: center;
   gap: 12px;
 }
-
-.btn-login {
+/* 
+.btn-login{
   background: var(--surface);
   border: 1px solid var(--border-hairline);
   color: var(--text-secondary);
@@ -64,7 +64,7 @@
 
 .btn-new-task:hover {
   filter: brightness(1.08);
-}
+} */
 
 
 /*Theme Button*/

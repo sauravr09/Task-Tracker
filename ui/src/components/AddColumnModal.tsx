@@ -19,7 +19,7 @@ const AddColumnModal = ({ isOpen, onConfirm, onCancel }: AddColumnModalProps) =>
     }
   }, [isOpen])
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.SubmitEvent) => {
     e.preventDefault()
     const trimmed = name.trim()
     if (!trimmed) return

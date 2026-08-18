@@ -11,9 +11,9 @@ const Header = () => {
       </div>
 
       <div className="nav-actions">
-        <button className="btn-login">Login</button>
+        <button className="btn-secondary">Projects</button>
         <ThemeToggle />
-        <button className="btn-new-task">+ New task</button>
+        <button className="btn-primary">Login</button>
       </div>
     </header>
   )

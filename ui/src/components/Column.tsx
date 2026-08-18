@@ -17,6 +17,10 @@ type ColumnProps = {
 }
 
 const Column = ({ name, count, dotVariant = "neutral", tasks, onAddTask }: ColumnProps) => {
+
+  function handleAddTask() { 
+    
+  }
   return (
     <div className="column">
       <div className="column-header">
