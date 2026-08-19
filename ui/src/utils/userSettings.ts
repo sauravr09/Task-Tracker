@@ -3,7 +3,7 @@ import type {Theme, UserSettings} from '../types/settings';
 const STORAGE_KEY = "userSettings";
 
 function getPreferedTheme(): Theme { 
-    return (window.matchMedia("(prefers-color-scheme): dark")).matches ? 'dark' : 'light';
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? 'dark' : 'light';
 }
 
 function applyTheme(theme: Theme) { 

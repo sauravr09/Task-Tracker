@@ -1,13 +1,19 @@
 import { useState, useRef, useEffect } from "react"
 import Column from "./Column"
 import AddColumnModal from "./AddColumnModal"
-import type { ColumnData } from "../types/board"
-import { initialColumns } from "../data/tasks"
+import type { ColumnData, Task } from "../types/board"
+import type { ColumnColor } from "../data/columnColors"
 
-let nextColumnId = 1
+type BoardProps = {
+  columns: ColumnData[]
+  onAddColumn: (name: string, dotVariant: ColumnColor) => void
+  onOpenAddTask: (columnId: string) => void
+  onMoveTask: (taskId: string, fromColumnId: string, toColumnId: string) => void
+  onEditTask: (task: Task, columnId: string) => void
+  onEditColumn: (columnId: string, name: string, dotVariant: ColumnData["dotVariant"]) => void
+}
 
-const Board = () => {
-  const [columns, setColumns] = useState<ColumnData[]>(initialColumns)
+const Board = ({ columns, onAddColumn, onOpenAddTask, onMoveTask, onEditTask, onEditColumn }: BoardProps) => {
   const [isAddingColumn, setIsAddingColumn] = useState(false)
   const boardRef = useRef<HTMLDivElement>(null)
   const prevCountRef = useRef(columns.length)
@@ -19,20 +25,9 @@ const Board = () => {
     prevCountRef.current = columns.length
   }, [columns.length])
 
-  const handleConfirmAddColumn = (name: string) => {
-    const newColumn: ColumnData = {
-      id: `col-new-${nextColumnId++}`,
-      name,
-      dotVariant: "neutral",
-      tasks: [],
-    }
-    setColumns(prev => [...prev, newColumn])
+  const handleConfirmAddColumn = (name: string, dotVariant: ColumnColor) => {
+    onAddColumn(name, dotVariant)
     setIsAddingColumn(false)
-  }
-
-  const handleAddTask = (columnId: string) => {
-    // placeholder for now — wire up to a real "new task" form/modal later
-    console.log("Add task to", columnId)
   }
 
   return (
@@ -40,11 +35,18 @@ const Board = () => {
       {columns.map(column => (
         <Column
           key={column.id}
+          id={column.id}
           name={column.name}
           count={column.tasks.length}
           dotVariant={column.dotVariant}
           tasks={column.tasks}
-          onAddTask={() => handleAddTask(column.id)}
+          otherColumns={columns
+            .filter(other => other.id !== column.id)
+            .map(other => ({ id: other.id, name: other.name }))}
+          onAddTask={() => onOpenAddTask(column.id)}
+          onMoveTask={onMoveTask}
+          onEditTask={onEditTask}
+          onEditColumn={onEditColumn}
         />
       ))}
 

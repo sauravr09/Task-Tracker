@@ -1,28 +1,56 @@
+import { useState } from "react"
+import type { ColumnData, Task } from "../types/board"
+import Card from "./Card"
+import ColumnMenu from "./ColumnMenu"
 
-type Task = {
-  id: string
-  title: string
-  description: string
-  tags: { label: string; variant: string }[]
-  ref: string
-  date: string
-}
+type ColumnOption = { id: string; name: string }
 
 type ColumnProps = {
+  id: string
   name: string
   count: number
-  dotVariant?: "neutral" | "active" | "review" | "done"
+  dotVariant?: ColumnData["dotVariant"]
   tasks: Task[]
+  otherColumns: ColumnOption[]
   onAddTask?: () => void
+  onMoveTask: (taskId: string, fromColumnId: string, toColumnId: string) => void
+  onEditTask: (task: Task, columnId: string) => void
+  onEditColumn: (columnId: string, name: string, dotVariant: ColumnData["dotVariant"]) => void
 }
 
-const Column = ({ name, count, dotVariant = "neutral", tasks, onAddTask }: ColumnProps) => {
+const Column = ({ id, name, count, dotVariant = "neutral", tasks, otherColumns, onAddTask, onMoveTask, onEditTask, onEditColumn }: ColumnProps) => {
+  const [isDragOver, setIsDragOver] = useState(false)
 
-  function handleAddTask() { 
-    
+  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault()
+    e.dataTransfer.dropEffect = "move"
+    if (!isDragOver) setIsDragOver(true)
   }
+
+  const handleDragLeave = (e: React.DragEvent<HTMLDivElement>) => {
+    if (e.currentTarget.contains(e.relatedTarget as Node)) return
+    setIsDragOver(false)
+  }
+
+  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault()
+    setIsDragOver(false)
+
+    const raw = e.dataTransfer.getData("text/plain")
+    if (!raw) return
+
+    const { taskId, fromColumnId } = JSON.parse(raw) as { taskId: string; fromColumnId: string }
+    if (fromColumnId === id) return
+    onMoveTask(taskId, fromColumnId, id)
+  }
+
   return (
-    <div className="column">
+    <div
+      className={`column ${isDragOver ? "drag-over" : ""}`}
+      onDragOver={handleDragOver}
+      onDragLeave={handleDragLeave}
+      onDrop={handleDrop}
+    >
       <div className="column-header">
         <div className="column-heading">
           <span className={`column-dot ${dotVariant}`} />
@@ -30,37 +58,21 @@ const Column = ({ name, count, dotVariant = "neutral", tasks, onAddTask }: Colum
           <span className="column-count">{count}</span>
         </div>
         <div className="column-header-actions">
-          <button className="icon-btn" aria-label="Add task">+</button>
-          <button className="icon-btn" aria-label="Column options">···</button>
+          <button className="icon-btn" aria-label="Add task" onClick={onAddTask}>+</button>
+          <ColumnMenu columnId={id} name={name} dotVariant={dotVariant} onSave={onEditColumn} />
         </div>
       </div>
 
       <div className="column-body">
         {tasks.map(task => (
-          <div className="card" key={task.id}>
-            <div className="card-title-row">
-              <span className="card-drag-handle">≡</span>
-              <span className="card-title">{task.title}</span>
-            </div>
-            <p className="card-description">{task.description}</p>
-            <div className="card-tags">
-              {task.tags.map(tag => (
-                <span key={tag.label} className={`tag tag-${tag.variant}`}>
-                  <span className="tag-dot" />
-                  {tag.label}
-                </span>
-              ))}
-            </div>
-            <div className="card-divider" />
-            <div className="card-footer">
-              <span className="card-meta">{task.ref} · {task.date}</span>
-              <div className="card-footer-actions">
-                <button className="move-to-btn">Move to...</button>
-                <button className="icon-btn" aria-label="Edit">✏️</button>
-                <button className="icon-btn" aria-label="Remove">×</button>
-              </div>
-            </div>
-          </div>
+          <Card
+            key={task.id}
+            task={task}
+            columnId={id}
+            otherColumns={otherColumns}
+            onMoveTask={onMoveTask}
+            onEditTask={onEditTask}
+          />
         ))}
 
         {tasks.length === 0 && (

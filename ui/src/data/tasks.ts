@@ -25,7 +25,7 @@ export const initialColumns: ColumnData[] = [
           { label: "Medium", variant: "medium" },
           { label: "Research", variant: "research" },
         ],
-        ref: "TSK-118",
+        ref: "TSK-1180",
         date: "Aug 21",
       },
       {
@@ -36,7 +36,7 @@ export const initialColumns: ColumnData[] = [
           { label: "Medium", variant: "medium" },
           { label: "Research", variant: "research" },
         ],
-        ref: "TSK-118",
+        ref: "TSK-1181",
         date: "Aug 21",
       },
     ],

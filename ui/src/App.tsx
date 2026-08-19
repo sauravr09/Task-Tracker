@@ -1,15 +1,17 @@
 import './styles/App.css'
 
-import Header from "./components/Header"
-import Board from './components/Board'
+import { Routes, Route } from "react-router-dom"
+import LandingPage from "./pages/LandingPage"
+import HomePage from "./pages/HomePage"
+import ProfilePage from "./pages/ProfilePage"
 
 const App = () => {
   return (
-    <div>
-      <Header></Header>
-      <Board/>
-    </div>
-    
+    <Routes>
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/home" element={<HomePage />} />
+      <Route path="/profile" element={<ProfilePage />} />
+    </Routes>
   )
 }
 

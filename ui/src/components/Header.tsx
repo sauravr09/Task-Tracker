@@ -1,9 +1,19 @@
+import { useNavigate } from "react-router-dom"
 import { ThemeToggle } from "./ThemeToggle"
+import AvatarMenu from "./AvatarMenu"
+import MobileNavMenu from "./MobileNavMenu"
 
-const Header = () => {
+type HeaderProps = {
+  onNewTaskClick?: () => void
+}
+
+const Header = ({ onNewTaskClick }: HeaderProps) => {
+  const navigate = useNavigate()
+  const handleNewTaskClick = onNewTaskClick ?? (() => navigate("/home", { state: { openAddTask: true } }))
+
   return (
     <header className="nav-bar">
-      <div className="nav-brand">
+      <div onClick={() => navigate("/home")} className="nav-brand">
         <div className="nav-logo">TT</div>
         <div className="nav-title-group">
           <span className="nav-title">Task Tracker</span>
@@ -11,9 +21,24 @@ const Header = () => {
       </div>
 
       <div className="nav-actions">
-        <button className="btn-secondary">Projects</button>
-        <ThemeToggle />
-        <button className="btn-primary">Login</button>
+        <div className="nav-actions-desktop">
+          <button className="btn-secondary">Customize</button>
+          <button className="btn-primary" onClick={handleNewTaskClick}>
+            + New Task
+          </button>
+          <ThemeToggle />
+        </div>
+
+        <MobileNavMenu>
+          <button className="btn-secondary">Customize</button>
+          <button className="btn-primary" onClick={handleNewTaskClick}>
+            + New Task
+          </button>
+          <ThemeToggle />
+        </MobileNavMenu>
+
+        <span className="nav-divider" />
+        <AvatarMenu avatarUrl="https://i.pravatar.cc/100?img=1" />
       </div>
     </header>
   )
