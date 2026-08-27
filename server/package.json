@@ -1,7 +1,7 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
+  "description": "The server for the task tracker web application.",
   "main": "server.ts",
   "scripts": {
     "dev": "tsx watch src/server.ts"
@@ -9,15 +9,21 @@
   "keywords": [],
   "type": "module",
   "dependencies": {
-    "express": "^5.2.1"
+    "bcrypt": "^6.0.0",
+    "better-sqlite3": "^13.0.3",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3"
   },
   "devDependencies": {
+    "@types/better-sqlite3": "^9.6.0",
     "@types/express": "^5.0.6",
     "@types/node": "^26.3.0",
     "tsx": "^4.23.12",
     "typescript": "^7.0.2"
   },
   "allowScripts": {
-    "esbuild@0.28.2": true
+    "esbuild@0.28.2": true,
+    "bcrypt@6.0.0": true,
+    "better-sqlite3@13.0.3": true
   }
 }
