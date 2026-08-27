@@ -43,8 +43,8 @@ const LandingPage = () => {
         <form onSubmit={handleSubmit}>
           {mode === "register" && (
            <>
-            <label htmlFor="name">Name</label>
-            <input id="name" type="text" className="modal-input" placeholder="John" />
+            <label htmlFor="username">Username</label>
+            <input id="username" type="text" className="modal-input" placeholder="CoolguyJosh" />
            </>
           )}
           <>
