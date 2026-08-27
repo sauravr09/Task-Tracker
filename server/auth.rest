@@ -1,0 +1,13 @@
+### GET api status  
+GET http://localhost:3000/
+
+### POST - Register a user 
+POST http://localhost:3000/auth/register 
+Content-Type: application/json 
+
+{
+    "username": "sunboy",
+    "email": "test@gmail.com",
+    "password": "sunnyboy",
+    "confirmPassword": "sunnyboy"
+}
