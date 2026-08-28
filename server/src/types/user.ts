@@ -4,3 +4,16 @@ export type UserRegisterRequestBody = {
     password: string,
     confirmPassword: string
 }
+
+export type UserLoginRequestBody = {
+    email: string, 
+    password: string
+}
+
+export type UserRow = {
+    id: number, 
+    username: string, 
+    email: string, 
+    password_hash: string,
+    created_at: string;
+}
