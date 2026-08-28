@@ -2,7 +2,7 @@ export type UserRegisterRequestBody = {
     username: string, 
     email: string, 
     password: string,
-    confirmPassword: string
+    confirmPassword?: string
 }
 
 export type UserLoginRequestBody = {
@@ -16,4 +16,11 @@ export type UserRow = {
     email: string, 
     password_hash: string,
     created_at: string;
+}
+
+export type UserRegisteredSuccess = {
+   userId: number,
+   accessToken: string,
+   refreshToken: string
+
 }
