@@ -1,4 +1,4 @@
-import type { UserRegisterRequestBody, UserLoginRequestBody, UserRegisteredSuccess } from "../types/user.js"
+import type { UserRegisterRequestBody, UserLoginRequestBody, AuthSuccess } from "../types/user.js"
 import CustomError from "../utils/CustomError.js";
 import { UserModel } from "../models/userModel.js"
 import bcrypt from "bcryptjs";
@@ -6,7 +6,7 @@ import { generateAccessToken, generateRefreshToken } from "../utils/token.js";
 
 export const AuthService = {
 
-    async register({username, email, password}: UserRegisterRequestBody) : Promise<UserRegisteredSuccess | undefined>{
+    async register({username, email, password}: UserRegisterRequestBody) : Promise<AuthSuccess | undefined>{
         const existingUser = await UserModel.getUserByUsernameOrEmail(username, email);
 
         if (existingUser) {
@@ -27,10 +27,28 @@ export const AuthService = {
         const accessToken = generateAccessToken(newUserId);
         const refreshToken = generateRefreshToken(newUserId);
 
-        return {userId: newUserId, accessToken, refreshToken};
+        return {user: {id: newUserId, username: username}, accessToken, refreshToken};
 
+    },
+
+    async login({identifier, password}: UserLoginRequestBody) : Promise<AuthSuccess | undefined> {
         
+        const user = await UserModel.getUserByIdentifier(identifier);
+
+        if (!user) { 
+            throw new CustomError("Invalid Credentials", 401);
+        }
+
+        const passwordMatch = await bcrypt.compare(password, user.password_hash);
+
+        if(!passwordMatch){
+            throw new CustomError("Invalid Credentials", 401);
+        }
+
+        const accessToken = generateAccessToken(user.id);
+        const refreshToken = generateRefreshToken(user.id);
+
+        return {user: {id: user.id, username: user.username}, accessToken, refreshToken};
 
     }
-
 }

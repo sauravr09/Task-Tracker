@@ -6,7 +6,7 @@ export type UserRegisterRequestBody = {
 }
 
 export type UserLoginRequestBody = {
-    email: string, 
+    identifier: string, 
     password: string
 }
 
@@ -18,9 +18,13 @@ export type UserRow = {
     created_at: string;
 }
 
-export type UserRegisteredSuccess = {
-   userId: number,
+export type PublicUserInfo = {
+    id: number,
+    username: string
+}
+
+export type AuthSuccess = {
+   user: PublicUserInfo,
    accessToken: string,
    refreshToken: string
-
 }
