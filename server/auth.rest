@@ -12,11 +12,34 @@ Content-Type: application/json
     "confirmPassword": "sunnyboy"
 }
 
+### POST - Register a user 2
+POST http://localhost:3000/auth/register 
+Content-Type: application/json 
+
+{
+    "username": "sunboy7",
+    "email": "test8@gmail.com",
+    "password": "sunnyboy",
+    "confirmPassword": "sunnyboy"
+}
+
 ### POST - Login a user 
 POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-    "email": "test7@gmail.com",
+    "identifier": "test7@gmail.com",
     "password": "sunnyboy"
 }
+
+### POST - Login a user 2
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+    "identifier": "sunboy7",
+    "password": "sunnyboy"
+}
+
+
+### POST - Refresh a token
