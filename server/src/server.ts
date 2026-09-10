@@ -1,4 +1,5 @@
 import express from 'express'; 
+import cookieParser from 'cookie-parser';
 import { initDb } from './db/schema.js';
 import authRoutes from './routes/authRoutes.js'
 import { errorHandler } from './middlewares/errorHandler.js';
@@ -12,6 +13,7 @@ const PORT = process.env.PORT || 5000;
 
 // Middlewares 
 app.use(express.json()); 
+app.use(cookieParser()); // read cookie from http request and turn into JS object from req.cookies which can be used.
 
 app.get('/', (req, res) => res.send('Task Tracker server is running'));
 

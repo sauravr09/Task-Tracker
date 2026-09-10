@@ -1,4 +1,5 @@
 import express from 'express';
+import { perIpLimiter } from '../middlewares/rateLimiter.js';
 import { validateRegister, validateLogin, validateRefresh } from '../middlewares/validation.js';
 import { AuthController } from '../controllers/authController.js';
 
@@ -8,7 +9,7 @@ const router = express.Router();
 router.post('/register', validateRegister, AuthController.register);
 
 // Login a user 
-router.post('/login', validateLogin, AuthController.login)
+router.post('/login', perIpLimiter, validateLogin, AuthController.login)
 
 // Refresh User's Access Token 
 router.post('/refresh', validateRefresh, AuthController.refresh);

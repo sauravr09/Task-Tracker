@@ -1,0 +1,10 @@
+
+- Protected Tasks
+
+
+Futures: 
+
+    Authentication : 
+        - Reset Password? 
+    Premium User 
+        - More project board? 
