@@ -745,3 +745,11 @@
   top: 10px;
   right: 10px;
 }
+
+
+/*Error Style*/
+.error-p { 
+
+  color: crimson;
+  font-size: small;
+}

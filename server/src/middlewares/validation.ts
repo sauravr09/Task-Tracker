@@ -3,7 +3,7 @@ import CustomError from "../utils/CustomError.js";
 
 // Validate Register Form 
 export function validateRegister(req: Request, res: Response, next: NextFunction) { 
-    const {username, email, password} = req.body;
+    const {username, email, password, confirmPassword} = req.body;
 
     if (!username?.trim()) { 
         return next(new CustomError("Username is Required", 400))
@@ -15,11 +15,16 @@ export function validateRegister(req: Request, res: Response, next: NextFunction
         return next(new CustomError("Password must be atleast 6 characters long", 400));
     }
 
+    if (password !== confirmPassword){ 
+        return next(new CustomError("Passwords must match", 400))
+    }
+
     // clean and add to request
     res.locals.cleanedData = {
         username: username.trim(), 
         email: email.trim(),
-        password
+        password,
+        confirmPassword
     };
 
     return next();

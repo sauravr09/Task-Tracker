@@ -27,6 +27,8 @@ const AddColumnModal = ({ isOpen, onConfirm, onCancel }: AddColumnModalProps) =>
     const trimmed = name.trim()
     if (!trimmed) return
     onConfirm(trimmed, color)
+    // fetch("http://localhost:3000/auth/refresh", { method: "POST", credentials: "include" })
+    // .then(r => r.json()).then(console.log)
   }
 
   return (
